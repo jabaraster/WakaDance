@@ -58,8 +58,13 @@ $(function() {
 	    $('div.progress').hide('normal');
   };
 
+  var showError = function(errorMessage) {
+      $('.error-message-container').show();
+      $('.error-message').text(errorMessage);
+  };
+
   var uploadFiles = function(files) {
-    if (!files || !files.length ||  files.length === 0) {
+    if (!files.length || files.length === 0) {
       alert('動画ファイルを選択して下さい.');
       return;
     }
@@ -80,7 +85,7 @@ $(function() {
 
     // Ajaxでアップロード処理をするファイルへ内容渡す
     $.ajax({
-      url: '/post',
+      url: '/ajax-post',
       type: 'POST',
       data: fd,
       processData: false,
@@ -99,8 +104,7 @@ $(function() {
         $('a.refresher').get(0).click();
       },
       error: function(ajax, _, errorMessage) {
-        $('error-message-container').show();
-        $('.error-message').text(errorMessage);
+        showError(errorMessage);
       },
       complete: function() {
         enableSendButton();
@@ -109,7 +113,7 @@ $(function() {
         }, 500);
       },
     });
-  }
+  };
 
   $('input.upload-person-name').change(function() {
     $('a.refresher').attr('href', '?person=' + encodeURI($('input.upload-person-name').val()));
@@ -125,8 +129,26 @@ $(function() {
   });
 
   $('button.uploader').click(function() {
-    uploadFiles($('input[type="file"]').get(0).files);
+    var files = $('input[type="file"]').get(0).files;
+    if (!files || !window.FormData) {
+      disableSendButton();
+      $('button.hidden-uploader').click();
+      return false;
+    }
+    uploadFiles(files);
+    return false;
   });
+
+  $('button.hidden-uploader').click(function() {
+    $('body').append('<div class="screen">送信中...</div>');
+    return true;
+  });
+
+  window.onerror = function (message, url, lineNumber, error) {
+    showError(message + "\n" + error);
+    alert("エラーが発生しました。ごめんなさい。画面一番下のエラーメッセージ欄の内容をともにお知らせして下さい。");
+    return true;
+  };
 
   viewFiles($('input[type="file"]').get(0).files);
 });
