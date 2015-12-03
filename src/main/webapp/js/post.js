@@ -25,7 +25,6 @@ $(function(){
         fileInfo.push('</tr>');
         totalFileSize = totalFileSize + file.size;
     }
-    console.log(fileInfo.join(''));
     fileListArea.html(fileInfo.join(''));
     fileSizeArea.text('ファイルサイズ合計 -> ' + Math.ceil(totalFileSize/1024/1024) + ' MB');
   };
@@ -71,6 +70,7 @@ $(function(){
     for (var i = 0; i < files.length; i++) {
       fd.append("files[]", files[i]);
     }
+    fd.append("upload-person-name", $('input[name="upload-person-name"]').val())
 
     // Ajaxでアップロード処理をするファイルへ内容渡す
     $.ajax({

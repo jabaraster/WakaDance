@@ -16,7 +16,7 @@
     <form>
       <div class="form-container">
         <label>お名前</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" name="upload-person-name" >
       </div>
       <div class="form-container file-controls">
         <label>動画選択</label>
