@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -28,6 +29,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import info.jabara.wakadance.model.UploadFileInfo;
+import info.jabara.wakadance.model.UploadInfo;
+import info.jabara.wakadance.service.UploadFileService;
 import jabara.general.ExceptionUtil;
 import jabara.general.IoUtil;
 
@@ -39,13 +43,15 @@ import jabara.general.IoUtil;
 public class PostServlet extends HttpServlet {
     private static final long serialVersionUID = -1638257614302230158L;
 
+    @Inject
+    UploadFileService         uploadFileService;
+
     /**
      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest,
      *      javax.servlet.http.HttpServletResponse)
      */
     @Override
-    protected void doGet(final HttpServletRequest pReq, final HttpServletResponse pResp)
-            throws ServletException, IOException {
+    protected void doGet(final HttpServletRequest pReq, final HttpServletResponse pResp) throws ServletException, IOException {
         pReq.getRequestDispatcher("WEB-INF/post.jsp").forward(pReq, pResp); //$NON-NLS-1$
     }
 
@@ -54,20 +60,14 @@ public class PostServlet extends HttpServlet {
      *      javax.servlet.http.HttpServletResponse)
      */
     @Override
-    protected void doPost(final HttpServletRequest pRequest,
-            @SuppressWarnings("unused") final HttpServletResponse pResponse) throws ServletException, IOException {
-
+    protected void doPost(final HttpServletRequest pRequest, final HttpServletResponse pResponse) throws ServletException, IOException {
         final UploadInfo uploadInfo = getUploadInfo(pRequest.getParts(), getCharacterEncoding(pRequest));
-        System.out.println(uploadInfo);
-        // final AsyncContext asyncContext = pRequest.startAsync();
-        // final SendToS3Task task = new SendToS3Task(Environment.getAwsAccessKey(), Environment.getAwsSecreKey(),
-        // Paths.get("."));
-        // asyncContext.start(task);
+        this.uploadFileService.insert(uploadInfo);
     }
 
     private static File createTemporaryFile(final String suffix) {
         try {
-            return File.createTempFile("waka-dance-", suffix, getTemporaryDirectory().toFile()); //$NON-NLS-1$
+            return File.createTempFile("waka-dance-", "." + suffix, getTemporaryDirectory().toFile()); //$NON-NLS-1$ //$NON-NLS-2$
         } catch (final IOException e) {
             throw ExceptionUtil.rethrow(e);
         }
@@ -78,10 +78,10 @@ public class PostServlet extends HttpServlet {
         return c == null ? StandardCharsets.UTF_8 : Charset.forName(c);
     }
 
-    private static String getSuffix(final String fileName) {
-        final int lastDotPosition = fileName.lastIndexOf("."); //$NON-NLS-1$
+    private static String getSuffix(final String pFileName) {
+        final int lastDotPosition = pFileName.lastIndexOf("."); //$NON-NLS-1$
         if (lastDotPosition != -1) {
-            return fileName.substring(lastDotPosition + 1);
+            return pFileName.substring(lastDotPosition + 1);
         }
         return null;
     }
@@ -131,9 +131,9 @@ public class PostServlet extends HttpServlet {
     private static UploadFileInfo writeToTemporaryFile(final Part pPart) {
         final String suffix = getSuffix(pPart.getSubmittedFileName());
         final File outFile = createTemporaryFile(suffix);
-        try (final InputStream partIn = pPart.getInputStream();                    //
-                final BufferedInputStream partBufIn = IoUtil.toBuffered(partIn);                  //
-                final FileOutputStream fileOut = new FileOutputStream(outFile);                                   //
+        try (final InputStream partIn = pPart.getInputStream(); //
+                final BufferedInputStream partBufIn = IoUtil.toBuffered(partIn); //
+                final FileOutputStream fileOut = new FileOutputStream(outFile); //
                 final BufferedOutputStream fileBufOut = IoUtil.toBuffered(fileOut); //
         ) {
             final byte[] buf = new byte[4096];
@@ -143,6 +143,6 @@ public class PostServlet extends HttpServlet {
         } catch (final IOException e) {
             throw ExceptionUtil.rethrow(e);
         }
-        return new UploadFileInfo(outFile.toPath(), pPart.getSubmittedFileName(), pPart.getContentType());
+        return new UploadFileInfo(outFile.toPath(), pPart.getSubmittedFileName(), pPart.getContentType(), pPart.getSize(), null);
     }
 }

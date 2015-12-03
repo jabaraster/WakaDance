@@ -1,14 +1,19 @@
-$(function(){
+$(function() {
   "use strict";
 
   var viewFiles = function(files) {
     var fileListArea = $('.file-list > tbody');
     var fileSizeArea = $('.file-size');
     if (!files || !files.length) {
+      $('.selected-files').hide();
+      disableSendButton();
       fileListArea.html('');
       fileSizeArea.text('');
       return;
     }
+
+    enableSendButton();
+    $('.selected-files').show();
     var fileInfo = [];
     var totalFileSize = 0;
     for (var i = 0; i < files.length; ++i) {
@@ -26,7 +31,7 @@ $(function(){
         totalFileSize = totalFileSize + file.size;
     }
     fileListArea.html(fileInfo.join(''));
-    fileSizeArea.text('ファイルサイズ合計 -> ' + Math.ceil(totalFileSize/1024/1024) + ' MB');
+    fileSizeArea.html('ファイルサイズ合計 -> <span class="strong">' + Math.ceil(totalFileSize/1024/1024) + '</span> MB');
   };
 
   var setUploadProgress = function(jQueryProgressEvent) {
@@ -34,14 +39,15 @@ $(function(){
     var pb = $('div.progress-bar');
     pb.attr('aria-valuenow', percent);
     pb.css({'width': percent+'%'});
-    pb.text(percent+'%');
+    pb.text(( Math.ceil(percent * 10) / 10 ) + '%');
   };
 
-  var clearUploadProgress = function() {
-    var pb = $('div.progress-bar');
-    pb.attr('aria-valuenow', '0');
-    pb.css({'width': '0%'});
-    pb.text('0%');
+  var disableSendButton = function() {
+    $('.uploader-container').hide();
+  };
+
+  var enableSendButton = function() {
+    $('.uploader-container').show();
   };
 
   var showProgressBar = function() {
@@ -70,7 +76,7 @@ $(function(){
     for (var i = 0; i < files.length; i++) {
       fd.append("files[]", files[i]);
     }
-    fd.append("upload-person-name", $('input[name="upload-person-name"]').val())
+    fd.append("upload-person-name", $('input.upload-person-name').val())
 
     // Ajaxでアップロード処理をするファイルへ内容渡す
     $.ajax({
@@ -85,15 +91,19 @@ $(function(){
         return xhr;
       },
       beforeSend: function() {
+        disableSendButton();
         showProgressBar();
       },
       success: function(data) {
-        console.log('ファイルがアップロードされました。');
+        alert('動画がアップロードされました。ご協力ありがとうございました。');
+        $('a.refresher').get(0).click();
       },
-      error: function() {
-        console.log(arguments);
+      error: function(ajax, _, errorMessage) {
+        $('error-message-container').show();
+        $('.error-message').text(errorMessage);
       },
       complete: function() {
+        enableSendButton();
         setTimeout(function() {
           hideProgressBar();
         }, 500);
@@ -101,9 +111,10 @@ $(function(){
     });
   }
 
-  /*================================================
-    ダミーボタンを押した時の処理
-  =================================================*/
+  $('input.upload-person-name').change(function() {
+    $('a.refresher').attr('href', '?person=' + encodeURI($('input.upload-person-name').val()));
+  });
+
   $('button.selector').click(function() {
     // ダミーボタンとinput[type="file"]を連動
     $('input[type="file"]').click();

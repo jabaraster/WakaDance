@@ -24,7 +24,7 @@ public class JavaEEConfigurator implements ServletContextListener {
      * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
      */
     @Override
-    public void contextDestroyed(@SuppressWarnings("unused") final ServletContextEvent pEvent) {
+    public void contextDestroyed(final ServletContextEvent pEvent) {
         // nop
     }
 
@@ -34,7 +34,7 @@ public class JavaEEConfigurator implements ServletContextListener {
     @Override
     public void contextInitialized(final ServletContextEvent pEvent) {
         setUpHeartBeat(pEvent);
-        setUpJpa();
+        this.setUpJpa();
     }
 
     private void setUpJpa() {

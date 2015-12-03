@@ -13,27 +13,47 @@
 
   <div class="container">
 
+    <h2>動画投稿用のページです</h2>
+    <p>ともです。みなさんの動画をここから投稿して下さい。<p>
+    <p>このページに関するお問い合わせはFacebookでどうぞ。<p>
+
     <form>
       <div class="form-container">
         <label>お名前</label>
-        <input type="text" class="form-control" name="upload-person-name" >
+        <input type="text" class="form-control upload-person-name" name="upload-person-name" placeholder="何かあった時の連絡のために入力をお願いします" value="${param.person}">
       </div>
       <div class="form-container file-controls">
         <label>動画選択</label>
         <input type="file" multiple >
-        <button type="button" class="selector btn btn-default form-primary">選択</button>
-        <table class="file-list table table-striped">
-          <tbody></tbody>
-        </table>
+        <button type="button" class="selector btn btn-primary form-control">ここを押してファイルを選んで下さい</button>
+        <fieldset class="selected-files">
+          <p>あなたが選択しているのは以下の動画です。</p>
+          <table class="file-list table table-striped">
+            <tbody></tbody>
+          </table>
+        </fieldset>
         <span class="file-size"></span>
       </div>
       <hr/>
-      <button type="button" class="uploader btn btn-success">送信</button>
+      
+      <div class="uploader-container">
+        <p>下のボタンでアップロードを開始して下さい。ファイルのサイズが大きい場合、Wi-Fiに接続してアップロードすることをオススメします。</p>
+        <button type="button" class="uploader btn btn-danger form-control">アップロード開始！</button>
+      </div>
     </form>
 
     <div class="progress">
       <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
       </div>
+    </div>
+
+    <hr/>
+    <a href="" class="refresher btn btn-default form-control">最初からやり直し</a>
+
+    <hr/>
+    <div class="error-message-container">
+      <p>エラーメッセージ欄</p>
+      <div class="error-message"></div>
     </div>
 
   </div>

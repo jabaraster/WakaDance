@@ -6,7 +6,7 @@ package info.jabara.wakadance.entity;
 /**
  * @author jabaraster
  */
-public enum UploadState {
+public enum SendState {
 
     /**
      *
@@ -21,7 +21,12 @@ public enum UploadState {
     /**
      *
      */
-    UPLOADED,
+    SUCCESS,
+
+    /**
+     *
+     */
+    FAIL,
 
     ;
 }

@@ -1,4 +1,4 @@
-package info.jabara.wakadance.web;
+package info.jabara.wakadance.model;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package info.jabara.wakadance.web;
+package info.jabara.wakadance.model;
 
 import java.nio.file.Path;
 
@@ -12,4 +12,6 @@ public class UploadFileInfo {
     private Path   saveFilePath;
     private String fileName;
     private String contentType;
+    private long   size;
+    private Long   dbKeyValue;
 }
