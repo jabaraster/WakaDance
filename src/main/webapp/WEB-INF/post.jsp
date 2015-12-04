@@ -17,6 +17,7 @@
     <h2>動画投稿用のページです</h2>
     <p>ともです。みなさんの動画をここから投稿して下さい。<p>
     <p>このページに関するお問い合わせはFacebookでどうぞ。<p>
+    <p>※動画以外も投稿できるようにしました。</p>
 
     <form method="post" enctype="multipart/form-data" action="./post">
       <div class="form-container">

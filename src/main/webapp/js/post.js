@@ -65,16 +65,8 @@ $(function() {
 
   var uploadFiles = function(files) {
     if (!files.length || files.length === 0) {
-      alert('動画ファイルを選択して下さい.');
+      alert('ファイルを選択して下さい.');
       return;
-    }
-
-    for (var i = 0; i < files.length; ++i) {
-      var type = files[i].type;
-      if (type.indexOf('video/') !== 0) {
-        alert('ファイル[' + files[i].name + ']は動画ではないようです.');
-        return;
-      }
     }
 
     var fd = new FormData();
@@ -100,7 +92,7 @@ $(function() {
         showProgressBar();
       },
       success: function(data) {
-        alert('動画がアップロードされました。ご協力ありがとうございました。');
+        alert('ファイルがアップロードされました。ご協力ありがとうございました。');
         $('a.refresher').get(0).click();
       },
       error: function(ajax, _, errorMessage) {
