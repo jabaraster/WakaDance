@@ -28,5 +28,10 @@ public enum SendState {
      */
     FAIL,
 
+    /**
+     *
+     */
+    DOWNLOADED,
+
     ;
 }

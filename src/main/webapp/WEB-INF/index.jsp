@@ -22,12 +22,13 @@
       <tbody>
         <c:forEach var="file" items="${files}">
           <tr>
+            <td><button type="button" class="downloaded btn btn-success btn-sm" data-record-id="${file.id.value}"><span class="glyphicon glyphicon-ok"></span></button></td>
             <td>${file.personName}</td>
             <td>${file.uploadFileName}</td>
             <td>${file.contentType}</td>
             <td>${file.size / 1024 / 1024} MB</td>
-            <td>${file.sendState}</td>
-            <td>${file.localFilePath}</td>
+            <td class="send-state-${file.id.value}">${file.sendState}</td>
+            <td>${file.localFileName}</td>
           </tr>
         </c:forEach>
       </tbody>
@@ -37,6 +38,8 @@
     <a href="./post" class="btn btn-primary">投稿画面へ</a>
 
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="./js/index.js"></script>
 </body>
 </html>

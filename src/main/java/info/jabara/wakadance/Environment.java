@@ -1,5 +1,6 @@
 package info.jabara.wakadance;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.nio.file.Paths;
@@ -14,26 +15,26 @@ public final class Environment {
     /**
      *
      */
-    public static final String APPLICATION_NAME = "WakaDance";                                                                         //$NON-NLS-1$
+    public static final String  APPLICATION_NAME                      = "WakaDance";                                                        //$NON-NLS-1$
 
-    private static final String PARAM_PREFIX = APPLICATION_NAME + "_";                                                        //$NON-NLS-1$
+    private static final String PARAM_PREFIX                          = APPLICATION_NAME + "_";                                             //$NON-NLS-1$
 
     /**
      *
      */
-    public static final String PARAM_HIBERNATE_HBM2DDL_AUTO   = PARAM_PREFIX + "hibernateHbm2ddlAuto";                                                                                                                                                                                                //$NON-NLS-1$
+    public static final String  PARAM_HIBERNATE_HBM2DDL_AUTO          = PARAM_PREFIX + "hibernateHbm2ddlAuto";                              //$NON-NLS-1$
     /**
      *
      */
-    public static final String DEFAULT_HIBERNATE_HBM2DDL_AUTO = "update";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  //$NON-NLS-1$
+    public static final String  DEFAULT_HIBERNATE_HBM2DDL_AUTO        = "update";                                                           //$NON-NLS-1$
     /**
      *
      */
-    public static final String PARAM_H2_DATABASE_PATH         = PARAM_PREFIX + "h2DatabasePath";                                                                                                                                                                                                                                                            //$NON-NLS-1$
+    public static final String  PARAM_H2_DATABASE_PATH                = PARAM_PREFIX + "h2DatabasePath";                                    //$NON-NLS-1$
     /**
      *
      */
-    public static final String PARAM_H2_DB_NAME_SUFFIX        = PARAM_PREFIX + "h2DbNameSuffix";                                                                                                                                                                                                                                                              //$NON-NLS-1$
+    public static final String  PARAM_H2_DB_NAME_SUFFIX               = PARAM_PREFIX + "h2DbNameSuffix";                                    //$NON-NLS-1$
     /**
      * デフォルト値はカレントディレクトリ以下のtarget/db/<アプリケーション名>です. <br>
      * 即ち、以下のコードでパスを組み立てています. <br>
@@ -41,33 +42,33 @@ public final class Environment {
      * Paths.get(".").toAbsolutePath().normalize() + "/target/db/" + Environment.APPLICATION_NAME
      * </code>
      */
-    public static final String DEFAULT_H2_DATABASE_PATH       = Paths.get(".").toAbsolutePath().normalize()                                                                                                          //$NON-NLS-1$
-            + "/target/db/" + APPLICATION_NAME;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        //$NON-NLS-1$
+    public static final String  DEFAULT_H2_DATABASE_PATH              = Paths.get(".").toAbsolutePath().normalize()                         //$NON-NLS-1$
+            + "/target/db/" + APPLICATION_NAME;                                                                                             //$NON-NLS-1$
 
     /**
      *
      */
-    public static final String PARAM_COPYRIGHT = PARAM_PREFIX + "copyright";                                                    //$NON-NLS-1$
+    public static final String  PARAM_COPYRIGHT                       = PARAM_PREFIX + "copyright";                                         //$NON-NLS-1$
 
     /**
      *
      */
-    public static final String DEFAULT_COPYRIGHT = APPLICATION_NAME + " " + Calendar.getInstance().get(Calendar.YEAR);                     //$NON-NLS-1$
+    public static final String  DEFAULT_COPYRIGHT                     = APPLICATION_NAME + " " + Calendar.getInstance().get(Calendar.YEAR); //$NON-NLS-1$
 
     /**
-     *  
+     *
      */
-    public static final int DEFAULT_S3_UPLOAD_TIMEOUT_SECONDS = 30;
+    public static final int     DEFAULT_S3_UPLOAD_TIMEOUT_SECONDS     = 30;
 
     /**
-     * 
+     *
      */
-    public static final int DEFAULT_S3_UPLOAD_PART_SIZE_MEGABYTES = 5;
+    public static final int     DEFAULT_S3_UPLOAD_PART_SIZE_MEGABYTES = 5;
 
     /**
-     * 
+     *
      */
-    public static final String DEFAULT_S3_BUCKET_NAME = "waka-dance-test"; //$NON-NLS-1$
+    public static final String  DEFAULT_S3_BUCKET_NAME                = "waka-dance-test";                                                  //$NON-NLS-1$
 
     private Environment() {
         // 処理なし
@@ -144,6 +145,22 @@ public final class Environment {
     /**
      * @return -
      */
+    public static String getMavenCommand() {
+        return EnvironmentUtil.getString(PARAM_PREFIX + "mavenCommand", "mvn"); //$NON-NLS-1$ //$NON-NLS-2$
+    }
+
+    /**
+     * @return -
+     */
+    public static File getMavenDirectory() {
+        final String dir = EnvironmentUtil.getString(PARAM_PREFIX + "mavenDirectory", //$NON-NLS-1$
+                "/Users/jabaraster/Documents/Develop/Java/workspace/projects/waka-dance-lib"); //$NON-NLS-1$
+        return new File(dir);
+    }
+
+    /**
+     * @return -
+     */
     public static String getS3BucketName() {
         return EnvironmentUtil.getString(PARAM_PREFIX + "s3BucketName", DEFAULT_S3_BUCKET_NAME); //$NON-NLS-1$
     }
@@ -152,7 +169,7 @@ public final class Environment {
      * @return -
      */
     public static int getS3UploadPartSizeMegaBytes() {
-        return EnvironmentUtil.getInt(PARAM_PREFIX + "s3UploadPartSizeMegaBytes",DEFAULT_S3_UPLOAD_PART_SIZE_MEGABYTES); //$NON-NLS-1$
+        return EnvironmentUtil.getInt(PARAM_PREFIX + "s3UploadPartSizeMegaBytes", DEFAULT_S3_UPLOAD_PART_SIZE_MEGABYTES); //$NON-NLS-1$
     }
 
     /**

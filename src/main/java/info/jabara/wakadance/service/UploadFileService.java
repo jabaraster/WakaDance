@@ -18,7 +18,9 @@ import info.jabara.wakadance.entity.EUploadFile;
 import info.jabara.wakadance.entity.SendState;
 import info.jabara.wakadance.model.UploadFileInfo;
 import info.jabara.wakadance.model.UploadInfo;
+import jabara.general.NotFound;
 import jabara.jpa.entity.EntityBase_;
+import jabara.jpa.entity.Id;
 
 /**
  * @author jabaraster
@@ -69,5 +71,19 @@ public class UploadFileService {
             files.add(db);
         }
         return new UploadInfo(pUploadInfo.getPersonName(), files);
+    }
+
+    /**
+     * @param pId -
+     * @param pState -
+     * @throws NotFound -
+     */
+    @Transactional
+    public void updateState(final Id<EUploadFile> pId, final SendState pState) throws NotFound {
+        final EUploadFile e = this.em.find(EUploadFile.class, Long.valueOf(pId.getValue()));
+        if (e == null) {
+            throw NotFound.GLOBAL;
+        }
+        e.setSendState(pState);
     }
 }

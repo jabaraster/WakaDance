@@ -3,11 +3,14 @@
  */
 package info.jabara.wakadance.entity;
 
+import java.nio.file.Paths;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import jabara.general.Empty;
 import jabara.jpa.entity.GlobalEntityBase;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,4 +44,14 @@ public class EUploadFile extends GlobalEntityBase<EUploadFile> {
 
     @Column(nullable = false)
     long                      size             = -1;
+
+    /**
+     * @return -
+     */
+    public String getLocalFileName() {
+        if (this.localFilePath == null) {
+            return Empty.STRING;
+        }
+        return Paths.get(this.localFilePath).getFileName().toString();
+    }
 }
