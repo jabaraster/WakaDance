@@ -3,17 +3,17 @@
  */
 package info.jabara.wakadance.service.internal;
 
-import info.jabara.wakadance.Environment;
-
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import info.jabara.wakadance.Environment;
+
 /**
  * @author jabaraster
  */
-@Dependent
+@RequestScoped
 public class EntityManagerProvider {
 
     @PersistenceContext(unitName = Environment.APPLICATION_NAME)

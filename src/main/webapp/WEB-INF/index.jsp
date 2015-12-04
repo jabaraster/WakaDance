@@ -27,6 +27,7 @@
             <td>${file.contentType}</td>
             <td>${file.size / 1024 / 1024} MB</td>
             <td>${file.sendState}</td>
+            <td>${file.localFilePath}</td>
           </tr>
         </c:forEach>
       </tbody>

@@ -34,11 +34,6 @@
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/org/glassfish/main/extras/glassfish-embedded-web/4.1/glassfish-embedded-web-4.1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/18.0/guava-18.0.jar" sourcepath="M2_REPO/com/google/guava/guava/18.0/guava-18.0-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/jabaraster/.m2/repository/com/google/guava/guava/18.0/guava-18.0-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
   <classpathentry kind="var" path="M2_REPO/com/h2database/h2/1.4.181/h2-1.4.181.jar" sourcepath="M2_REPO/com/h2database/h2/1.4.181/h2-1.4.181-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/com/h2database/h2/1.4.181/h2-1.4.181-javadoc.jar!/" name="javadoc_location"/>
@@ -104,16 +99,6 @@
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/javax/javaee-web-api/7.0/javaee-web-api-7.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/net/java/dev/jna/jna/4.1.0/jna-4.1.0.jar" sourcepath="M2_REPO/net/java/dev/jna/jna/4.1.0/jna-4.1.0-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/jabaraster/.m2/repository/net/java/dev/jna/jna/4.1.0/jna-4.1.0-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/net/java/dev/jna/jna-platform/4.1.0/jna-platform-4.1.0.jar" sourcepath="M2_REPO/net/java/dev/jna/jna-platform/4.1.0/jna-platform-4.1.0-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/jabaraster/.m2/repository/net/java/dev/jna/jna-platform/4.1.0/jna-platform-4.1.0-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
   <classpathentry kind="var" path="M2_REPO/joda-time/joda-time/2.8.1/joda-time-2.8.1.jar" sourcepath="M2_REPO/joda-time/joda-time/2.8.1/joda-time-2.8.1-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/joda-time/joda-time/2.8.1/joda-time-2.8.1-javadoc.jar!/" name="javadoc_location"/>
@@ -134,9 +119,9 @@
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/org/projectlombok/lombok/1.12.2/lombok-1.12.2-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/postgresql/postgresql/9.4-1200-jdbc41/postgresql-9.4-1200-jdbc41.jar" sourcepath="M2_REPO/org/postgresql/postgresql/9.4-1200-jdbc41/postgresql-9.4-1200-jdbc41-sources.jar">
+  <classpathentry kind="var" path="M2_REPO/org/postgresql/postgresql/9.4-1203-jdbc41/postgresql-9.4-1203-jdbc41.jar" sourcepath="M2_REPO/org/postgresql/postgresql/9.4-1203-jdbc41/postgresql-9.4-1203-jdbc41-sources.jar">
     <attributes>
-      <attribute value="jar:file:/Users/jabaraster/.m2/repository/org/postgresql/postgresql/9.4-1200-jdbc41/postgresql-9.4-1200-jdbc41-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/Users/jabaraster/.m2/repository/org/postgresql/postgresql/9.4-1203-jdbc41/postgresql-9.4-1203-jdbc41-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4-sources.jar">
@@ -144,17 +129,7 @@
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar" sourcepath="M2_REPO/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/jabaraster/.m2/repository/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
   <classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/lib/tools.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/github/dblock/waffle/waffle-jna/1.7/waffle-jna-1.7.jar" sourcepath="M2_REPO/com/github/dblock/waffle/waffle-jna/1.7/waffle-jna-1.7-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/jabaraster/.m2/repository/com/github/dblock/waffle/waffle-jna/1.7/waffle-jna-1.7-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-core/6.18.0/wicket-core-6.18.0.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-core/6.18.0/wicket-core-6.18.0-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/org/apache/wicket/wicket-core/6.18.0/wicket-core-6.18.0-javadoc.jar!/" name="javadoc_location"/>
