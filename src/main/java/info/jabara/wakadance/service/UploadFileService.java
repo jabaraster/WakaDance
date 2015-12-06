@@ -15,6 +15,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import info.jabara.wakadance.entity.EUploadFile;
+import info.jabara.wakadance.entity.EUploadFile_;
 import info.jabara.wakadance.entity.SendState;
 import info.jabara.wakadance.model.UploadFileInfo;
 import info.jabara.wakadance.model.UploadInfo;
@@ -39,13 +40,19 @@ public class UploadFileService {
     }
 
     /**
+     * @param pHideDownloaded -
      * @return -
      */
-    public List<EUploadFile> getAll() {
+    public List<EUploadFile> getAll(final boolean pHideDownloaded) {
         final CriteriaBuilder builder = this.em.getCriteriaBuilder();
         final CriteriaQuery<EUploadFile> query = builder.createQuery(EUploadFile.class);
         final Root<EUploadFile> root = query.from(EUploadFile.class);
         query.orderBy(builder.desc(root.get(EntityBase_.created)));
+
+        if (pHideDownloaded) {
+            query.where(builder.notEqual(root.get(EUploadFile_.sendState), SendState.DOWNLOADED));
+        }
+
         return this.em.createQuery(query).getResultList();
     }
 

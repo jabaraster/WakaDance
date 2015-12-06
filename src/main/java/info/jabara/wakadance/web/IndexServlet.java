@@ -30,7 +30,8 @@ public class IndexServlet extends HttpServlet {
      */
     @Override
     protected void doGet(final HttpServletRequest pReq, final HttpServletResponse pResp) throws ServletException, IOException {
-        pReq.setAttribute("files", this.uploadFileService.getAll()); //$NON-NLS-1$
+        final boolean hideDownloaded = Boolean.parseBoolean(pReq.getParameter("hidedownloaded")); //$NON-NLS-1$
+        pReq.setAttribute("files", this.uploadFileService.getAll(hideDownloaded)); //$NON-NLS-1$
         pReq.getRequestDispatcher("WEB-INF/index.jsp").forward(pReq, pResp); //$NON-NLS-1$
     }
 }

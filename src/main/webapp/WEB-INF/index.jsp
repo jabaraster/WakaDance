@@ -9,14 +9,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="./css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/post.css" >
-  <title>わかこ披露宴動画 統合動画一覧</title>
+  <link rel="stylesheet" href="./css/index.css" >
+  <title>わかこ披露宴動画 アップロードファイル一覧</title>
 </head>
 <body>
 
   <div class="container">
 
-    <h2>投稿された動画の一覧です</h2>
+    <div class="button-container">
+      <a href="" class="btn btn-default"><span class="glyphicon glyphicon-refresh">リロード</span></a>
+      <a href="./post" class="btn btn-primary">アップロード画面へ</a>
+    </div>
+
+    <h2>アップロードされた動画の一覧です</h2>
+    <div class="button-container">
+      <a href="?hidedownloaded=true" class="btn btn-default btn-sm">DOWNLOADEDを消す</a>
+      <a href="?hidedownloaded=false" class="btn btn-default btn-sm">DOWNLOADEDも表示する</a>
+    </div>
 
     <table class="table table-striped">
       <tbody>
@@ -33,9 +42,6 @@
         </c:forEach>
       </tbody>
     </table>
-
-    <hr/>
-    <a href="./post" class="btn btn-primary">投稿画面へ</a>
 
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

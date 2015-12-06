@@ -8,16 +8,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/post.css" >
-  <title>わかこ披露宴動画 投稿サイト</title>
+  <title>わかこ披露宴動画 アップロードサイト</title>
 </head>
 <body>
 
   <div class="container">
 
-    <h2>動画投稿用のページです</h2>
-    <p>ともです。みなさんの動画をここから投稿して下さい。<p>
+    <h2>動画アップロード用のページです</h2>
+    <p>ともです。みなさんの動画をここからアップロードして下さい。<p>
     <p>このページに関するお問い合わせはFacebookでどうぞ。<p>
     <p>※動画以外も投稿できるようにしました。</p>
+    <p>うまくいかない人は<a href="./post2">こちら</a>も試して見て下さい。</p>
 
     <form method="post" enctype="multipart/form-data" action="./post">
       <div class="form-container">
